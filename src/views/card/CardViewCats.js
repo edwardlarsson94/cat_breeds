@@ -1,48 +1,46 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { Card } from '@rneui/themed';
 
 export default function CardViewCats({ breedTitle, catData }) {
+  
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{breedTitle}</Text>
       <View style={styles.cardsContainer}>
         {catData.map((cat, index) => (
           <Card key={index} containerStyle={styles.card}>
             <View>
-                <Text style={styles.catName}>{cat.breedName}</Text>
-                <Image
-                    source={{ uri: cat.imageUrl }}
-                    style={styles.image}
-                />
+                <Text style={styles.catName}>{cat.name}</Text>
+                <Image style={styles.image} source={{ uri: cat.imageUrl }}/>
                 <View style={styles.boxOriginAndIntelligence}>
-                    <Text style={styles.origin}>{cat.origin}</Text>
+                    <Text style={styles.origin}>{cat.country_code}</Text>
                     <Text style={styles.intelligence}>{cat.intelligence}</Text>
                 </View>
             </View>
           </Card>
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingVertical: 30
+    flexGrow: 1,
+    paddingVertical: 30,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    textAlign:'center'
+    textAlign: 'center',
   },
   cardsContainer: {
-    paddingTop:10
+    paddingTop: 10,
   },
   card: {
-    borderColor:'black'
+    borderColor: 'black',
   },
   cardContent: {
     alignItems: 'center',
@@ -68,6 +66,6 @@ const styles = StyleSheet.create({
   boxOriginAndIntelligence: {
     flexDirection: 'row',
     width: '100%',
-    justifyContent:'space-between',
-  }
+    justifyContent: 'space-between',
+  },
 });
